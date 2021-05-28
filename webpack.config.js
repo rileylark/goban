@@ -87,6 +87,7 @@ module.exports = (env, argv) => {
                 'goban': './src/goban.ts',
                 'engine': './src/engine.ts',
                 'test': './src/test.tsx',
+                'test_score_estimator': './src/test_score_estimator.tsx',
             },
 
             output: {

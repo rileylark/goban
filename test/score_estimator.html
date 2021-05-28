@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <script
+      src="https://online-go.com/OGSScoreEstimator/OGSScoreEstimator-0.7.0.asm.js"
+      id="ogs_score_estimator_script"
+    ></script>
+    <script src="https://cdn.online-go.com/lib/jquery/3.1.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.10.2/umd/react.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.10.2/umd/react-dom.development.js"></script>
+
+    <style>
+      html,
+      body {
+        margin: 0;
+      }
+      .Goban {
+        margin-left: 1rem;
+        margin-top: 1rem;
+        position: relative;
+        display: inline-block;
+      }
+
+      .StoneLayer,
+      .ShadowLayer,
+      .PenLayer {
+        position: absolute;
+        left: 0;
+        right: 0;
+      }
+
+      .ShadowLayer {
+        z-index: 5;
+      }
+      .StoneLayer {
+        z-index: 10;
+      }
+      .PenLayer {
+        z-index: 20;
+      }
+
+      .inline-block {
+        display: inline-block;
+      }
+
+      .setting span {
+        display: inline-block;
+        min-width: 7rem;
+      }
+
+      .move-tree-container {
+        display: inline-block;
+        background-color: gray;
+        height: 20rem;
+        width: 30rem;
+        margin: 1rem;
+        resize: both;
+        overflow: scroll;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Score Estimator</h1>
+    <div id="test-content" />
+    <script src="/test_score_estimator.js"></script>
+  </body>
+</html>
