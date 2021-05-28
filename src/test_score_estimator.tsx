@@ -17,12 +17,18 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { GobanCore, GobanConfig, GobanHooks } from './GobanCore';
-//import { GobanPixi } from './GobanPixi';
 import { GobanCanvas, GobanCanvasConfig } from './GobanCanvas';
 import { EventEmitter } from 'eventemitter3';
 import * as ScoreEstimator from './ScoreEstimator';
+import * as SampleScoreEstimates from '../test/sample_score_estimates.json';
 
-console.log(ScoreEstimator);
+ScoreEstimator.set_remote_scorer(
+    function remote_score_estimator(req: ScoreEstimator.ScoreEstimateRequest): Promise<ScoreEstimator.ScoreEstimateResponse> {
+        return new Promise<ScoreEstimator.ScoreEstimateResponse>((resolve, reject) => {
+            resolve(SampleScoreEstimates.move_41);
+        });
+    });
+
 ScoreEstimator.init_score_estimator().then(() => console.log("INITIALIZED"))
 
 let stored_config: GobanConfig = {};
@@ -118,6 +124,11 @@ function Main(): JSX.Element {
                 <div className='inline-block'>
                     <button onClick={(ev) => {
                         fiddler.emit('set_scoring_mode', [true, true]);
+                        setTimeout(() => {
+                            forceUpdate();
+                            redraw();
+                        }, 200)
+
                     }}>Turn on scoring mode</button>
 
                     <button onClick={(ev) => {
